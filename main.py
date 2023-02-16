@@ -23,6 +23,14 @@ class Subscription:
         self.is_active = False
         self.invoices = []
 
+    def activate(self):
+        self.is_active = True
+        print(f"Subscription {self.name} activated")
+
+    def deactivate(self):
+        self.is_active = False
+        print(f"Subscription {self.name} activated")
+
 
 class Invoice:
     def __init__(self, user_id, subscription_name, amount, start_date, end_date):
