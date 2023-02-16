@@ -36,6 +36,15 @@ class User:
                 print(
                     f"Invoice for subscription {subscription.name} from {invoice.start_date} to {invoice.end_date} with amount {invoice.amount} units")
 
+    def get_statistics(self):
+        total_invoiced = 0
+        for subscription in self.subscriptions:
+            for invoice in subscription.invoices:
+                total_invoiced += invoice.amount
+        total_spent = sum([s.price for s in self.subscriptions])
+        print(
+            f"User {self.username} has been invoiced {total_invoiced} units and spent {total_spent} units in the system")
+
 
 class Subscription:
     def __init__(self, name, price):
