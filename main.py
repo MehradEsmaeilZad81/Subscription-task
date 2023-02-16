@@ -30,6 +30,12 @@ class User:
                 print(
                     f"Invoice generated for user {self.username} for subscription {subscription.name} with amount {subscription.price} units")
 
+    def get_invoices(self):
+        for subscription in self.subscriptions:
+            for invoice in subscription.invoices:
+                print(
+                    f"Invoice for subscription {subscription.name} from {invoice.start_date} to {invoice.end_date} with amount {invoice.amount} units")
+
 
 class Subscription:
     def __init__(self, name, price):
