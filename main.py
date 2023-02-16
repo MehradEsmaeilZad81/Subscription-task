@@ -72,3 +72,28 @@ class Invoice:
         self.amount = amount
         self.start_date = start_date
         self.end_date = end_date
+
+
+# Test:
+
+user = User(1, "Mehrad")
+user.credit = 1000
+
+subscription = Subscription("VM", 250)
+user.add_subscription(subscription)
+subscription.activate()
+
+user.generate_invoices()
+user.generate_invoices()
+
+user.get_invoices()
+user.get_statistics()
+
+# Output:
+#       Subscription VM added for user Mehrad
+#       Subscription VM activated
+#       Invoice generated for user Mehrad for subscription VM with amount 250 units
+#       Invoice generated for user Mehrad for subscription VM with amount 250 units
+#       Invoice for subscription VM from 2023-02-16 12:15:10.121954 to 2023-02-16 12:25:10.121954 with amount 250 units
+#       Invoice for subscription VM from 2023-02-16 12:15:10.121954 to 2023-02-16 12:25:10.121954 with amount 250 units
+#       User Mehrad has been invoiced 500 units and spent 250 units in the system
