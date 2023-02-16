@@ -1,3 +1,6 @@
+from datetime import datetime, timedelta
+
+
 class User:
     def __init__(self, user_id, username):
         self.user_id = user_id
@@ -15,6 +18,18 @@ class User:
         print(
             f"Subscription {subscription.name} removed for user {self.username}")
 
+    def generate_invoices(self):
+        for subscription in self.subscriptions:
+            if subscription.is_active:
+                start_date = datetime.now()
+                end_date = start_date + timedelta(minutes=10)
+                invoice = Invoice(self.user_id, subscription.name,
+                                  subscription.price, start_date, end_date)
+                subscription.add_invoice(invoice)
+                self.credit -= subscription.price
+                print(
+                    f"Invoice generated for user {self.username} for subscription {subscription.name} with amount {subscription.price} units")
+
 
 class Subscription:
     def __init__(self, name, price):
@@ -30,6 +45,9 @@ class Subscription:
     def deactivate(self):
         self.is_active = False
         print(f"Subscription {self.name} activated")
+
+    def add_invoice(self, invoice):
+        self.invoices.append(invoice)
 
 
 class Invoice:
