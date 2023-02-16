@@ -5,6 +5,16 @@ class User:
         self.credit = 0
         self.subscriptions = []
 
+    def add_subscription(self, subscription):
+        self.subscriptions.append(subscription)
+        print(
+            f"Subscription {subscription.name} added for user {self.username}")
+
+    def remove_subscription(self, subscription):
+        self.subscriptions.remove(subscription)
+        print(
+            f"Subscription {subscription.name} removed for user {self.username}")
+
 
 class Subscription:
     def __init__(self, name, price):
